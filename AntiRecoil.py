@@ -39,6 +39,7 @@ def AntiRecoilData(Key):    # Keyboard-Thread
     global AntiRecoilEnabled
     global Weapon
     global LoggingEnabled
+    global RecoilPatternLog
 
     if Key == Toggler:
         AntiRecoilEnabled = not AntiRecoilEnabled
@@ -63,7 +64,10 @@ def AntiRecoilData(Key):    # Keyboard-Thread
     if Key == pynput.keyboard.Key.f7:
         LoggingEnabled = not LoggingEnabled
         if LoggingEnabled:
+            RecoilPatternLog = []
             print('Logging Values Enabled, (CLICK CAREFULLY AT RIGHT BULLET PATTERN)')
+        else:
+            print('Logging Values Disabled')
 
 
 def RecoilControl(X, Y, Button, Pressed):   # Mouse-Thread
@@ -95,6 +99,8 @@ def CoorLogger(ClickCoor):
 
     else:
         print(RecoilPatternLog)
+        KeyboardController.press(pynput.keyboard.Key.f7)
+        KeyboardController.release(pynput.keyboard.Key.f7)
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -102,10 +108,11 @@ if __name__ == '__main__':  # Main-Thread
 
     Toggler = pynput.keyboard.Key.f1
     MouseController = pynput.mouse.Controller()
+    KeyboardController = pynput.keyboard.Controller()
     AntiRecoilEnabled = False
     LoggingEnabled = False
     Weapon = 'VANDAL'
-    RecoilPatternLog = []
+    RecoilPatternLog = None
 
     with pynput.mouse.Listener(on_click = RecoilControl) as MouseListener:
         with pynput.keyboard.Listener(on_press = AntiRecoilData) as KeyboardListener:   # Keyboard Listener Thread
