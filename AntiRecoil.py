@@ -46,6 +46,9 @@ def AntiRecoilData(Key):    # Keyboard-Thread
         if AntiRecoilEnabled:
             print('Anti-Recoil Enabled')
 
+        else:
+            print('Anti-Recoil Disabled')
+
     elif Key == pynput.keyboard.Key.f2:
         Weapon = 'SPECTRE'
 
