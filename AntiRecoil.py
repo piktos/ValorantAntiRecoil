@@ -9,11 +9,11 @@ class ValorantAntiRecoil:
     """
 
     GunPatternDirectory = {
-        'SPECTRE' : [(), (), (), (), (), (), (), (), (), ()],
-        'VANDAL'  : [(), (), (), (), (), (), (), (), (), ()],
-        'PHANTOM' : [(), (), (), (), (), (), (), (), (), ()],
-        'BULLDOG' : [(), (), (), (), (), (), (), (), (), ()],
-        'STINGER' : [(), (), (), (), (), (), (), (), (), ()]
+        'SPECTRE' : [(), (), (), (), (), (), (), (), ()],
+        'VANDAL'  : [(-1, 4), (-1, 6), (-2, 17), (-3, 17), (-2, 17), (-3, 16), (-2, 14), (-1, 4), (-1, 2)],
+        'PHANTOM' : [(), (), (), (), (), (), (), (), ()],
+        'BULLDOG' : [(), (), (), (), (), (), (), (), ()],
+        'STINGER' : [(), (), (), (), (), (), (), (), ()]
     }
 
     def __init__(self, Sleep, Gun, MouseCoor):
@@ -79,7 +79,7 @@ def RecoilControl(X, Y, Button, Pressed):   # Mouse-Thread
 
     if Pressed and AntiRecoilEnabled:
         AntiRecoil = ValorantAntiRecoil(random.uniform(30, 35), Weapon, (X, Y))
-        #AntiRecoil.ManageRecoil()
+        AntiRecoil.ManageRecoil()
 
     if Pressed and LoggingEnabled:
         CoorLogger((X, Y))
